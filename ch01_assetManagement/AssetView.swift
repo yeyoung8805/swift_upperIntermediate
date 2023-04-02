@@ -2,7 +2,16 @@ import SwiftUI
 
 struct AssetView: View {
   var body: some View {
-    Text("Hello, World!")
+    NavigationView {
+      ScrollView {
+        VStack(spacing: 30) {
+          Spacer()
+          AssetMenuGridView()
+        }
+      }
+      .background(Color.gray.opacity(0.2))
+      .navigationBarWithButtonStyle("내 자산")
+    }
   }
 }
 
