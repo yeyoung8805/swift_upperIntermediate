@@ -6,7 +6,7 @@ struct AssetSectionHeaderView: View {
   var body: some View {
     VStack(alignment: .leading) {
       Text(title)
-        .font(.sustem(size: 20 , weight: .bold))
+        .font(.system(size: 20 , weight: .bold))
         .foregroundColor(.accentColor)
       Divider()
         .frame(height: 2)
