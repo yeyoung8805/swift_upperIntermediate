@@ -1,6 +1,6 @@
 import SwiftUI
 
-class AssetBannerView: ObservableObject {
+class AssetSummaryData: ObservableObject {
   @Published var assets: [Asset] = load("assets.json")
 
 }

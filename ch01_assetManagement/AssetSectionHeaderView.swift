@@ -1,13 +1,15 @@
 import SwiftUI
 
-struct AssetBannerView: View {
+struct AssetSectionHeaderView: View {
+  let title: String
+
   var body: some View {
     Text("Hello, World!")
   }
 }
 
-struct AssetBannerView_Previews: PreviewProvider {
+struct AssetSectionHeaderView_Previews: PreviewProvider {
   static var previews: some View {
-    AssetBannerView()
+    AssetSectionHeaderView(title: "은행")
   }
 }
