@@ -4,7 +4,15 @@ struct AssetSectionHeaderView: View {
   let title: String
 
   var body: some View {
-    Text("Hello, World!")
+    VStack(alignment: .leading) {
+      Text(title)
+        .font(.sustem(size: 20 , weight: .bold))
+        .foregroundColor(.accentColor)
+      Divider()
+        .frame(height: 2)
+        .background(Color.primary)
+        .foregroundColor(.accentColor)
+    }
   }
 }
 
