@@ -13,3 +13,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window?.makeKeyAndVisible()
   }
 }
+
+//KingFisher, SnapKit (Swift Package Dependency 설치)
