@@ -40,6 +40,12 @@ extension TodayViewController: UICollectionViewDelegateFlowLayout {
     CGSize(width: collectionView.frame.width - 32.0, height: 100.0)
     }
 
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
+    insetForSectionAt section: Int) -> UIEdgeInsets {
+    let value: CGFloat = 16.0  
+    return UIEdgeInsets(top: value, left: value, bottom: value, right: value)
+  }
+
 }
 
 extension TodayViewController: UICollectionViewDataSource {
