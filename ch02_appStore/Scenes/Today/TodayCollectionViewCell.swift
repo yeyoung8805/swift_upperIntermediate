@@ -56,9 +56,9 @@ private extension TodayCollectionViewCell {
       .forEach { addSubview($0) }
 
     subTitleLabel.snp.makeConstraints {
-      $0.leading.equalToSuperView().insert(24.0)
-      $0.trailing.equalToSuperView().insert(24.0)
-      $0.top.equalToSuperView().insert(24.0)
+      $0.leading.equalToSuperView().inset(24.0)
+      $0.trailing.equalToSuperView().inset(24.0)
+      $0.top.equalToSuperView().inset(24.0)
     }
 
     titleLabel.snp.makeConstraints {
@@ -68,9 +68,9 @@ private extension TodayCollectionViewCell {
     }
 
     descriptionLabel.snp.makeConstraints {
-      $0.leading.equalToSuperView().insert(24.0)
-      $0.trailing.equalToSuperView().insert(24.0)
-      $0.top.equalToSuperView().insert(24.0)
+      $0.leading.equalToSuperView().inset(24.0)
+      $0.trailing.equalToSuperView().inset(24.0)
+      $0.top.equalToSuperView().inset(24.0)
     }
 
     imageView.snp.makeConstraints {
