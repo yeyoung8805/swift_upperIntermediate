@@ -1,2 +1,6 @@
-import Foundation
+import UIKit
+
+final class TodayViewController: UIViewController {
+  
+}
 
