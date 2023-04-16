@@ -1,10 +1,42 @@
+import SnapKit
 import UIKit
 
 final class TodayViewController: UIViewController {
+  private lazy var collectionView: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.delegate = self
+    collectionView.dataSource = self
+
+    collectionView.backgroundColor = .systemBackground
+    collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "todayCell")
+
+    return collectionView
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    //TodayViewController 가 잘 만들어졌는지 확인하기 위한 아래 코드 추가 
-    view.backgroundColor = .green
+    
+    view.addSubview(collectionView)
+    collectionView.snp.makeConstraints {
+      $0.edges.equalToSuperView()
+    }
   }
 }
 
+extension TodayViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "todayCell", for: indexPath)
+    cell.backgroundColor = .black
+    return cell
+  }
+
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    5
+  }
+}
+
+
+extension TodayViewController: UICollectionViewDelegate {
+  
+}
