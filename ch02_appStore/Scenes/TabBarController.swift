@@ -3,7 +3,7 @@ import UIKit
 class TabBarController: UITabBarController {
 
   private lazy var todayViewController: UIViewController = {
-    let viewController = UIViewController()
+    let viewController = TodayViewController()
     let tabBarItem = UITabBarItem(
         title: "투데이", 
         image: UIImage(systemName: "mail"), 
