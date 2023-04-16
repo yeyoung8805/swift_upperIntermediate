@@ -40,7 +40,7 @@ extension TodayViewController: UICollectionViewDataSource {
 extension TodayViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
     sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let width = collectionView.frame.width - 32.0
+    let width: CGFloat = collectionView.frame.width - 32.0
     return CGSize(width: width, height: width)
   }
 }
