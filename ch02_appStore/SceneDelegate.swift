@@ -5,6 +5,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, 
     options connectionOptions: UIScene.connectionOptions) {
-    guard let _ = (scene as? UIWindowScene) else { return } 
+    guard let windowScene = (scene as? UIWindowScene) else { return } 
+
+    window = UIWindow(windowScene: windowScene)
+    window?.backgroundColor = .systemBackground
+    window?.rootViewController = ViewController()
+    window?.makeKeyAndVisible()
   }
 }
