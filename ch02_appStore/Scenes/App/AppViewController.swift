@@ -11,11 +11,10 @@ final class AppViewController: UIViewController {
     stackView.distribution = .equalSpacing
     stackView.spacing = 0.0
 
-    let featureSectionView = UIView()
+    let featureSectionView = FeatureSectionView(frame: .zero)
     let rankingFeatureSectionView = UIView()
     let exchangeCodeButtonView = UIView()
 
-    featureSectionView.backgroundColor = .red
     rankingFeatureSectionView.backgroundColor = .yellow
     exchangeCodeButtonView.backgroundColor = .blue
 
@@ -24,7 +23,6 @@ final class AppViewController: UIViewController {
       rankingFeatureSectionView,
       exchangeCodeButtonView
     ].forEach {
-      $0.snp.makeConstraints {$0.height.equalTo(500.0)}
       stackView.addArrangedSubview($0)
     }
 
