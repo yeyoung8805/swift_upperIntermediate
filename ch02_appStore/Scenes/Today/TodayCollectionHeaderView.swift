@@ -21,7 +21,7 @@ final class TodayCollectionHeaderView: UICollectionReusableView {
   }()
 
   func setupViews() {
-    [dateLabel, titleLabel].forEach { addSubView($0) }
+    [dateLabel, titleLabel].forEach { addSubview($0) }
 
     dateLabel.snp.makeConstraints {
       $0.leading.equalToSuperView().inset(16.0)

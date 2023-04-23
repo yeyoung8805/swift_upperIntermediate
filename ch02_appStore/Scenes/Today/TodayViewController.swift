@@ -21,7 +21,7 @@ final class TodayViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.addSubView(collectionView)
+    view.addSubview(collectionView)
     collectionView.snp.makeConstraints {
       $0.edges.equalToSuperView()
     }
