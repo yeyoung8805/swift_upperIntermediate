@@ -53,7 +53,7 @@ final class TodayCollectionViewCell: UICollectionViewCell {
 private extension TodayCollectionViewCell {
   func setupSubViews() {
     [imageView, titleLabel, subTitleLabel, descriptionLabel]
-      .forEach { addSubview($0) }
+      .forEach { addSubView($0) }
 
     subTitleLabel.snp.makeConstraints {
       $0.leading.equalToSuperView().inset(24.0)
