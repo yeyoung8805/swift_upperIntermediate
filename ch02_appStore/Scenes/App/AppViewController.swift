@@ -11,6 +11,23 @@ final class AppViewController: UIViewController {
     stackView.distribution = .equalSpacing
     stackView.spacing = 0.0
 
+    let featureSectionView = UIView()
+    let rankingFeatureSectionView = UIView()
+    let exchangeCodeButtonView = UIView()
+
+    featureSectionView.backgroundColor = .red
+    rankingFeatureSectionView.backgroundColor = .yellow
+    exchangeCodeButtonView.backgroundColor = .blue
+
+    [
+      featureSectionView,
+      rankingFeatureSectionView,
+      exchangeCodeButtonView
+    ].forEach {
+      $0.snp.makeConstraints {$0.height.equalTo(500.0)}
+      stackView.addArrangedSubview($0)
+    }
+
     return stackView
   }()
 
@@ -18,9 +35,9 @@ final class AppViewController: UIViewController {
     super.viewDidLoad()
 
     setupNavigationController()
+    setupLayout()
   }
  
-
 }
 
 private extension AppViewController {
@@ -48,7 +65,7 @@ private extension AppViewController {
     contentView.addSubView(stackView)
     stackView.snp.makeConstraints {
       $0.edges.equalToSuperView() //모서리들을 contentView에 맞춘다.
-      
+
     }
   }
 }
