@@ -2,8 +2,6 @@ import SnapKit
 import UIKit
 
 final class RankingFeatureSectionView: UIView {
-  private let cellHeight: CGFloat = 30.0
-
   private lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 18.0, weight: .black)
@@ -39,7 +37,7 @@ final class RankingFeatureSectionView: UIView {
     collectionView.showHorizontalScrollIndicator = false
 
     collectionView.register(
-      UICollectionViewCell.self,
+      RankingFeatureCollectionViewCell.self,
       forCellWithReuseIdentifier: "RankingFeatureCollectionViewCell"
     )
 
@@ -65,7 +63,7 @@ extension RankingFeatureSectionView: UICollectionViewDelegateFlowLayout {
     sizeForItemAt indexPath: IndexPath) -> CGSize {
     CGSize(
       width: collectionView.frame.width - 32.0,
-      height: cellHeight
+      height: RankingFeatureCollectionViewCell.height
     )
   }
 }
@@ -79,11 +77,11 @@ extension RankingFeatureSectionView: UICollectionViewDataSource {
     let cell = collectionView.dequeueReusableCell(
       withReusableIdentifier: "RankingFeatureCollectionViewCell",
       for: indexPath
-    )
+    ) as? RankingFeatureCollectionViewCell
 
-    cell.backgroundColor = .red
+    cell?.setup()
 
-    return cell
+    return cell ?? UICollectionViewCell()
   }
 }
 
@@ -109,7 +107,7 @@ private extension RankingFeatureSectionView {
 
     collectionView.snp.makeConstraints {
       $0.top.equalTo(titleLabel.snp.bottom).offset(16.0)
-      $0.height.equalTo(cellHeight * 3) //더 많이 보여주고 싶을경우 4,5 등으로 추가 가능 
+      $0.height.equalTo(RankingFeatureCollectionViewCell.height * 3) //더 많이 보여주고 싶을경우 4,5 등으로 추가 가능 
       $0.leading.equalToSuperView()
       $0.trailing.equalToSuperView()
     }
