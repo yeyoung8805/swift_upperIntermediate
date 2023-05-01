@@ -42,9 +42,14 @@ final class AppDetailViewController: UIViewController {
     let button = UIButton()
     button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
     button.tintColor = .systemBlue
+    button.addTarget(self, action: #selector(didTapShareButton), for: .touchUpInside)
 
     return button
   }()
+
+  @objc func didTapShareButton() {
+    print("share")
+  }
 
   init(today: Today) {
     self.today = today
