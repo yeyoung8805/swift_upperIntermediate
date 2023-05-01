@@ -46,6 +46,12 @@ final class AppDetailViewController: UIViewController {
     return button
   }()
 
+  init(today: Today) {
+    self.today = today
+
+    super.init(nibName: nil, bundle: nil)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -54,8 +60,8 @@ final class AppDetailViewController: UIViewController {
     setupViews()
 
     appIconImageView.backgroundColor = .lightGray
-    titleLabel.text = "title"
-    subTitleLabel.text = "Sub title"
+    titleLabel.text = today.title
+    subTitleLabel.text = today.subTitle
   }
 }
 
