@@ -47,9 +47,6 @@ final class AppDetailViewController: UIViewController {
     return button
   }()
 
-  @objc func didTapShareButton() {
-    print("share")
-  }
 
   init(today: Today) {
     self.today = today
@@ -107,9 +104,17 @@ private extension AppDetailViewController {
     }
 
     shareButton.snp.makeConstraints {
-      //// TODO
-
+      $0.bottom.equalTo(appIconImageView.snp.buttom)
+      $0.height.euqalTo(32.0)
+      $0.trailing.euqalTo(titleLabel.snp.trailing)
+      $0.width.equalTo(32.0)
     }
-
   }
+
+  @objc func didTapShareButton() {
+    let activityItems: [Any] = [today.title]
+    let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+    present(activityViewController, animated: true)
+  }
+
 }
