@@ -50,5 +50,55 @@ final class AppDetailViewController: UIViewController {
     super.viewDidLoad()
 
     view.backgroundColor = .systemBackground //white일 때 보다 darkmode 대응이 쉽다.
+
+    setupViews()
+
+    appIconImageView.backgroundColor = .lightGray
+    titleLabel.text = "title"
+    subTitleLabel.text = "Sub title"
+  }
+}
+
+//MARK: Private
+private extension AppDetailViewController {
+  func setupViews() {
+    [
+      appIconImageView,
+      titleLabel,
+      subTitleLabel,
+      downloadButton,
+      shareButton
+    ].forEach { view.addSubview($0) }
+
+    appIconImageView.snp.makeConstraints {
+      $0.leading.equalToSuperView().inset(16.0)
+      $0.top.equalToSuperView().inset(32.0)
+      $0.height.euqalTo(100.0)
+      $0.width.euqalTo(appIconImageView.snp.height)
+    }
+
+    titleLabel.snp.makeConstraints {
+      $0.equalTo(appIconImageView.snp.top)
+      $0.leading.equalTo(appIconImageView.snp.trailing).offset(16.0)
+      $0.trailing.equalToSuperView().inset(16.0)
+    }
+
+    subTitleLabel.snp.makeConstraints {
+      $0.top.equalTo(titleLabel.snp.bottom).offset(4.0)
+      $0.leading.equalTo(titleLabel.snp.leaing)
+    }
+
+    downloadButton.snp.makeConstraints {
+      $0.bottom.euqalTo(appIconImageView.snp.bottom)
+      $0.height.equalTo(24.0)
+      $0.leading.euqalTo(titleLabel.snp.leading)
+      $0.width.equalTo(60.0)
+    }
+
+    shareButton.snp.makeConstraints {
+      //// TODO
+
+    }
+
   }
 }
