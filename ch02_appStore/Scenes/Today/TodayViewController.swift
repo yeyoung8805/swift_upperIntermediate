@@ -46,6 +46,11 @@ extension TodayViewController: UICollectionViewDelegateFlowLayout {
     return UIEdgeInsets(top: value, left: value, bottom: value, right: value)
   }
 
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let vc = AppDetailViewController()
+    present(vc, animated: true)
+  }
+
 }
 
 extension TodayViewController: UICollectionViewDataSource {
