@@ -1,4 +1,5 @@
 import SnapKit
+import Kingfisher
 import UIKit
 
 final class FeatureSectionCollectionViewCell: UICollectionViewSell {
@@ -37,15 +38,17 @@ final class FeatureSectionCollectionViewCell: UICollectionViewSell {
     return imageView
   }() 
 
-  func setup() {
+  func setup(feature: Feature) {
     setupLayout()
 
     // 확인을 위한 임시값
-    typeLabel.text = "type"
-    appNameLabel.text = "App name"
-    descriptionLabel.text = "description"
-    imageView.backgroundColor = .lightGray
+    typeLabel.text = feature.type
+    appNameLabel.text = feature.appName
+    descriptionLabel.text = feature.description
 
+    if let imageURL = URL(string: feature.imageURL) {
+      imageView.kf.setImage(with: imageURL)
+    }
   }
 }
 

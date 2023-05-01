@@ -14,4 +14,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
 }
 
-//KingFisher, SnapKit (Swift Package Dependency 설치)
+//Kingfisher, SnapKit (Swift Package Dependency 설치)

@@ -1,5 +1,5 @@
 import SnapKit
-import KingFisher
+import Kingfisher
 import UIKit
 
 final class TodayCollectionViewCell: UICollectionViewCell {
