@@ -8,7 +8,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     window = UIWindow(windowScene: windowScene)
     window?.backgroundColor = .systemBackground
-    window?.rootViewController = ViewController()
+    window?.rootViewController = UINavigationController(rootViewController: StationSearchViewController())
     window?.makeKeyAndVisible()
   }
 }
