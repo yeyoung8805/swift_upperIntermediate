@@ -2,6 +2,8 @@ import SnapKit
 import UIKit
 
 class StationSearchViewController: UIViewController {
+  private var numberOfCell: Int = 0
+
   private lazy var tableView: UITableView = {
     let tableView = UITableView()
     tableView.dataSource = self
@@ -37,17 +39,19 @@ class StationSearchViewController: UIViewController {
 
 extension StationSearchViewController: UISearchBarDelegate {
   func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    numberOfCell = 10
     tableView.isHidden = false // tableView 가 보이기 시작
   }
 
   func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    numberOfCell = 0
     tableView.isHidden = true // tableView 가 보이지 않게 됨
   }
 }
 
 extension StationSearchViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10 // 임의의 셀 개수 10개
+    return numberOfCell
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
