@@ -2,6 +2,12 @@ import SnapKit
 import UIKit
 
 final class StationDetailViewController: UIViewController {
+  private lazy var refreshControl: UIRefreshControl = {
+    let refreshControl = UIRefreshControl()
+
+    return refreshControl
+  }()
+
   private lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.estimatedItemSize = CGSize(
@@ -16,9 +22,10 @@ final class StationDetailViewController: UIViewController {
       forCellWithReuseIdentifier: "StationDetailCollectionViewCell")
 
     collectionView.dataSource = self
+    collectionView.refreshControl = refreshControl
     
     return collectionView
-  }
+  }()
 
   override func viewDidLoad() {
     super.viewDidLoad()
