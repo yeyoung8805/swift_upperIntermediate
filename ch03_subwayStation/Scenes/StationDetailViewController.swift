@@ -1,3 +1,4 @@
+import Alamofire
 import SnapKit
 import UIKit
 
@@ -9,9 +10,19 @@ final class StationDetailViewController: UIViewController {
     return refreshControl
   }()
 
-  @objc func fetchData() {
-    print("REFRESH !")
-    refreshControl.endRefreshing()
+  @objc private func fetchData() {
+    //"~역"을 제거해주는 코드 추가 
+    let stationName = "서울역"
+    let urlString = "http://swopenapi.seoul.go.kr/api/subway/sample/json/realtimeStationArrival/0/5/\(stationName.replacingOccurences(of: "역", with: ""))"
+
+    AF.request(urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
+      .responseDecodable(of: StationArrivalDataResponseModel.self) { [weak self] response in
+        self.refreshControl.endRefreshing() //refreshing 을 멈추는 코드는 success/fail(=else)와 상관없이 필요하므로 그 위에 선언한다!
+        guard case .success(let data) = response.result else { return }
+
+        print(data.realtimeArrivalList)
+      }
+      .resume()
   }
 
   private lazy var collectionView: UICollectionView = {
@@ -40,6 +51,8 @@ final class StationDetailViewController: UIViewController {
 
     view.addSubview(collectionView)
     collectionView.snp.makeConstraints { $0.edges.equalToSuperView() }
+
+    fetchData()
   }
 }
 
