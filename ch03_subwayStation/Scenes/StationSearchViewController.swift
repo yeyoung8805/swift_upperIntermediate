@@ -19,7 +19,7 @@ class StationSearchViewController: UIViewController {
 
     setNavigationItems()
     setTableViewLayout()
-    requestStationName()
+    
   }
 
   private func setNavigationItems() {
@@ -39,8 +39,8 @@ class StationSearchViewController: UIViewController {
     tableView.snp.makeConstraints{ $0.edges.equalToSuperView() }
   }
 
-  private func requestStationName() {
-    let urlString = "http://openapi.seoul.go.kr:8088/sample/json/SearchInfoBySubwayNameService/1/5/서울"
+  private func requestStationName(from stationName: String) {
+    let urlString = "http://openapi.seoul.go.kr:8088/sample/json/SearchInfoBySubwayNameService/1/5/\(stationName)"
 
     AF.request(urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
       .responseDecodable(of: StationResponseModel.self) { response in
@@ -62,6 +62,11 @@ extension StationSearchViewController: UISearchBarDelegate {
   func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
     numberOfCell = 0
     tableView.isHidden = true // tableView 가 보이지 않게 됨
+  }
+
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    // print(searchText)
+    requestStationName(from: searchText)
   }
 }
 
