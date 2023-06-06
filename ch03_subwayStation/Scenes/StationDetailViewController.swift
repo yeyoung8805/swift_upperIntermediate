@@ -20,7 +20,7 @@ final class StationDetailViewController: UIViewController {
 
     AF.request(urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
       .responseDecodable(of: StationArrivalDataResponseModel.self) { [weak self] response in
-        self.refreshControl.endRefreshing() //refreshing 을 멈추는 코드는 success/fail(=else)와 상관없이 필요하므로 그 위에 선언한다!
+        self?.refreshControl.endRefreshing() //refreshing 을 멈추는 코드는 success/fail(=else)와 상관없이 필요하므로 그 위에 선언한다!
         guard case .success(let data) = response.result else { return }
 
         self?.realtimeArrivalList = data.realtimeArrivalList
