@@ -4,7 +4,7 @@ final class TabBarController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let feedViewController = UIViewController()
+    let feedViewController = UINavigationController(rootViewController: FeedViewController())
     feedViewController.tabBarItem = UITabBarItem(
       title: nil, 
       image: UIImage(systemName: "house"), 
