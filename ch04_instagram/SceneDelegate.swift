@@ -9,6 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window = UIWindow(windowScene: windowScene)
     window?.backgroundColor = .systemBackground
     window?.rootViewController = TabBarController()
+    window?.tintColor = .label //dark mode : white, default mode : black 으로 보여주는 효과
     window?.makeKeyAndVisible()
   }
 }
