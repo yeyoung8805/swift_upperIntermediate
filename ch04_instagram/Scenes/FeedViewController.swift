@@ -8,6 +8,8 @@ class FeedViewController: UIViewController {
     tableView.seperatorStyle = .none
     tableView.dataSource = self
 
+    tableView.register(FeedTableViewCell.self, forCellReuseItentifier: "FeedTableViewCell")
+
     return tableView
   }()
 
@@ -25,9 +27,10 @@ extension FeedViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell()
-    cell.backgroundColor = .black
-    return cell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell", for: indexPath) as? FeedTableViewCell
+    cell?.selectionStyle = .none
+
+    return cell ?? UITableViewCell()
   }
 }
 
