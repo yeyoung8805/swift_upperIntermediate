@@ -65,7 +65,7 @@ final class ProfileViewController: UIViewController {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .systemBackground
-    collectionView.register(UICollectionView.self, forCellWithReuseIdentifier: "ProfileCollectionViewCell")
+    collectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: "ProfileCollectionViewCell")
     collectionView.datasource = self
     collectionView.delegate = self
 
@@ -90,10 +90,10 @@ extension ProfileViewController: UICollectionViewDataSource {
         .dequeueReusableCell(
           withReuseIdentifier: "ProfileCollectionViewCell", 
           for: indexPath
-        )
+        ) as? ProfileCollectionViewCell
 
-      cell.backgroundColor = .lightGray
-      return cell
+      cell?.setup(with: UIImage())
+      return cell ?? UICollectionViewCell()
   }
 
   func collectionView(_ collectionView: UICollectionView,
