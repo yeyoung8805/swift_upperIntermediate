@@ -60,11 +60,14 @@ final class ProfileViewController: UIViewController {
 
   private lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
+    layout.minimumLineSpacing = 0.5
+    layout.minimumInterItemSpacing = 0.5
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .systemBackground
     collectionView.register(UICollectionView.self, forCellWithReuseIdentifier: "ProfileCollectionViewCell")
     collectionView.datasource = self
+    collectionView.delegate = self
 
     return collectionView
   }()
@@ -97,6 +100,15 @@ extension ProfileViewController: UICollectionViewDataSource {
     numberOfItemsInSection section: Int) -> Int {
       return 10
   }
+}
+
+extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, 
+    layout collectionViewLayout: UICollectionViewLayout, 
+    sizeForItemAt indexPath: IndexPath) -> CGSize {
+      let width: CGFloat = (collectionView.frame.width / 3) - 1.0
+      return CGSize(width: width, height: width)
+    }
 }
 
 private extension ProfileViewController {
