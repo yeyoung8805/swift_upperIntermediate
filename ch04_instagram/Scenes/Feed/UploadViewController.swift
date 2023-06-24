@@ -6,9 +6,10 @@ final class UploadViewController: UIViewController {
 
   private let imageView = UIImageView()
 
-  private lazy var textView: UITextView = {
-    let textView = UITextView()
+  private lazy var textView: UITextField = {
+    let textView = UITextField()
     textView.font = .systemFont(ofSize: 15.0)
+    textView.placeholder = "문구를 입력해주세요."
 
     return textView
   }()
