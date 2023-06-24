@@ -6,10 +6,13 @@ final class UploadViewController: UIViewController {
 
   private let imageView = UIImageView()
 
-  private lazy var textView: UITextField = {
-    let textView = UITextField()
+  private lazy var textView: UITextView = {
+    let textView = UITextView()
     textView.font = .systemFont(ofSize: 15.0)
-    textView.placeholder = "문구를 입력해주세요."
+    textView.text = "문구 입력..."
+    textView.textColor = .secondaryLabel
+    textView.font = .systemFont(ofSize: 15.0)
+    textView.delegate = self
 
     return textView
   }()
@@ -31,6 +34,15 @@ final class UploadViewController: UIViewController {
     setupLayout()
 
     imageView.image = uploadImage
+  }
+}
+
+extension UploadViewController: UITextViewDelegate {
+  func textViewDidBeginEditing(_ textView: UITextView) {
+    guard textView.textColor == .secondaryLabel else { return }
+
+    textView.text = nil
+    textView.textColor = .label
   }
 }
 
