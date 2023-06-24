@@ -2,6 +2,8 @@ import SnapKit
 import UIKit
 
 final class UploadViewController: UIViewController {
+  private let uploadImage: UIImage
+
   private let imageView = UIImageView()
 
   private lazy var textView: UITextView = {
@@ -11,12 +13,23 @@ final class UploadViewController: UIViewController {
     return textView
   }()
 
+  init(uploadImage: UIImage) {
+    self.uploadImage = uploadImage
+    super.init(nibName: nil, bundle: nil) 
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
     view.backgroundColor = .systemBackground
     setupNavigationItem()
     setupLayout()
+
+    imageView.image = uploadImage
   }
 }
 
