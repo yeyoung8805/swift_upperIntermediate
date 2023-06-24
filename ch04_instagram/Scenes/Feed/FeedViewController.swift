@@ -16,6 +16,8 @@ class FeedViewController: UIViewController {
   private lazy var imagePickerController: UIImagePickerController = {
     let imagePickerController = UIImagePickerController()
     imagePickerController.sourceType = .photoLibrary
+    imagePickerController.allowsEditing = true
+    imagePickerController.delegate = self
 
     return imagePickerController
   }()
@@ -39,6 +41,23 @@ extension FeedViewController: UITableViewDataSource {
     cell?.setup()
 
     return cell ?? UITableViewCell()
+  }
+}
+
+extension FeedViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  func imagePickerController(_ picker: UIImagePickerController, 
+  didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    var selectImage: UIImage? 
+
+    if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+      selectImage = editedImage
+    } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+      selectImage = originalImage
+    }
+
+    print(selectImage)
+
+    picker.dismiss(animated: true, completion: nil)
   }
 }
 
