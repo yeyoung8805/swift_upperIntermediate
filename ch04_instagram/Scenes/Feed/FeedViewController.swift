@@ -1,7 +1,7 @@
 import SnapKit
 import UIKit
 
-class FeedViewController: UIViewController {
+final class FeedViewController: UIViewController {
   private lazy var tableView: UITableView = {
     let tableView = UITableView(frame: .zero)
     tableView.backgroundColor = .systemBackground
@@ -32,7 +32,7 @@ class FeedViewController: UIViewController {
 
 extension FeedViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
+    10
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,8 +54,6 @@ extension FeedViewController: UIImagePickerControllerDelegate, UINavigationContr
     } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
       selectImage = originalImage
     }
-
-    print(selectImage)
 
     picker.dismiss(animated: true) { [weak self] in
       let uploadViewController = UploadViewController(uploadImage: selectImage ?? UIImage())

@@ -94,15 +94,17 @@ final class FeedTableViewCell: UITableViewCell {
       $0.height.equalTo(buttonWidth)
     }
 
+    let buttonSpacing: CGFloat = 12.0
+
     commentButton.snp.makeConstraints {
-      $0.leading.equalTo(likeButton.snp.trailing).offset(12.0)
+      $0.leading.equalTo(likeButton.snp.trailing).offset(buttonSpacing)
       $0.top.equalTo(likeButton.snp.top)
       $0.width.equalTo(buttonWidth)
       $0.height.equalTo(buttonWidth)
     }
 
     directMessageButton.snp.makeConstraints {
-      $0.leading.equalTo(commentButton.snp.trailing).offset(12.0)
+      $0.leading.equalTo(commentButton.snp.trailing).offset(buttonSpacing)
       $0.top.equalTo(likeButton.snp.top)
       $0.width.equalTo(buttonWidth)
       $0.height.equalTo(buttonWidth)
@@ -121,16 +123,18 @@ final class FeedTableViewCell: UITableViewCell {
       $0.top.equalTo(likeButton.snp.bottom).offset(14.0)
     }
 
+    let labelVerticalSpacing: CGFloat = 8.0
+
     contentsLabel.snp.makeConstraints {
       $0.leading.equalTo(likeButton.snp.leading)
       $0.trailing.equalTo(bookmarkButton.snp.trailing)
-      $0.top.equalTo(currentLikedCountLabel.snp.bottom).offset(8.0)
+      $0.top.equalTo(currentLikedCountLabel.snp.bottom).offset(labelVerticalSpacing)
     }
 
     dateLabel.snp.makeConstraints {
       $0.leading.equalTo(likeButton.snp.leading)
       $0.trailing.equalTo(bookmarkButton.snp.trailing)
-      $0.top.equalTo(contentsLabel.snp.bottom).offset(8.0)
+      $0.top.equalTo(contentsLabel.snp.bottom).offset(labelVerticalSpacing)
       $0.bottom.equalToSuperview().inset(16.0)
     }
 
