@@ -1,7 +1,11 @@
 import UIKit
+import RxSwift
+import RxCocoa
 
 class RepositoryListViewController: UITableViewController {
   private let organization = "Apple"
+  private let repositories = BehaviorSubject<[Repository]>(value: [])
+  private let disposeBag = DisposeBag()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,6 +26,56 @@ class RepositoryListViewController: UITableViewController {
 
   @objc func refresh() {
 
+  }
+
+  func fetchRepositories(of organization: String) {
+    let t = Observable.from([organization])
+      .map { organization -> URL in
+        return URL(string: "https://api.github.com/orgs/\(organization)/repos")
+      }
+      .map { url -> URLRequest in 
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        return request
+      }
+      .flatMap { request -> Observable<(response: HTTPURLResponse, data: Data)> in
+        return URLSession.shared.rx.response(request: request)
+      }
+      .filter { response, _ in
+        return 200..<300 ~= responds.statusCode        
+      }
+      .map { _, data -> [[String: Any]] in
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
+              let result = json as? [[String: Any]] else {
+                return []
+        }
+        return result
+      }
+      .filter { result in
+        return result.count > 0
+      }
+      .map { objects in
+        return objects.compactMap { dic -> Repository? in
+          guard let id = dic["id"] as? Int,
+                let name = dic["name"] as? String,
+                let description = dic["description"] as? String,
+                let stargazersCount = dic["stargazers_count"] as? Int,
+                let language = dic["language"] as? String else {
+                  return nil
+          }
+
+          return Respository(id: id, name: name, description: description, stargazersCount: stargazersCount, language: language)
+        }
+      }
+      .subscribe (onNext: { [weak self] newRepositories in 
+        self?.respositories.onNext(newRepositories)
+
+        DispatchQueue.main.async {
+          self?.tableView.reloadData()
+          self?.refreshControl?.endRefreshing()
+        }
+      })
+      disposed(by: disposeBag)
   }
 }
 
