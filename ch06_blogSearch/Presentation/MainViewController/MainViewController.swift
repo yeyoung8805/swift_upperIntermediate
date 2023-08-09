@@ -5,8 +5,8 @@ import RxCocoa
 class MainViewController: UIViewController {
   let disposeBag = DisposeBag()
 
-  //let listView
-  //let searchBar
+  let searchBar = SearchBar()
+  let listView = BlogListView()
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
   }
 
   private func bind() {
-
+    
   }
 
   private func attribute() {
