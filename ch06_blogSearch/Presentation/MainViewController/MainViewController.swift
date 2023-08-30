@@ -23,6 +23,31 @@ class MainViewController: UIViewController {
   }
 
   private func bind() {
+    let blogResult = searchBar.shouldLoadResult
+      .flatMapLatest { query in
+        SearchBarNetwork().searchBlog(query: query)
+      }
+      .share()
+
+      let blogValue = blogResult
+        .compactMap { data-> DKBlog? in
+          guard case .success(let value) = data else {
+            return nil
+          }
+          return value
+        }
+
+      let blogError = blogResult
+        .compactMap { data -> String? in
+          guard case .failure(let error) = data else {
+            return nil
+          }
+          return error.localizedDescription
+        }
+
+      //네트워크를 통해 가져온 값을 cellData 로 변환
+
+
     let alertSheetForSorting = listView.headerView.sortButtonTapped
       .map { _ -> Alert in
         return (title: nil, message: nil, actions: [.title, .datetime, .cancel], style: .actionSheet)
